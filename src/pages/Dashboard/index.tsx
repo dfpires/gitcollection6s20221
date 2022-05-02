@@ -1,8 +1,11 @@
 import React from 'react'
-
+import logo from '../../assets/logo.svg'
 export const Dashboard:React.FC = () => {
     return (
-        <h2> Dashboard </h2>
+        <> 
+            <img src={logo} alt="Git Collection"/>
+            
+        </>
     )
 }
 
