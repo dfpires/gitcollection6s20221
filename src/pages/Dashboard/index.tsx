@@ -30,6 +30,7 @@ export const Dashboard:React.FC = () => {
     
     // vai na api do github e traz as info do repo
     async function handleAddRepo(event: React.FormEvent<HTMLFormElement>, ): Promise<void>{
+        console.log(`Botão foi pressionado`)
         // não atualiza a página
         event.preventDefault()
         // tenta chamar a api
