@@ -32,3 +32,19 @@ export const Formulario = styled.form`
         font-weight: bold;
     }
 `
+
+export const Repo = styled.div`
+    margin-top: 80px;
+    max-width: 700px;
+    a {
+        background: #fff;
+        border-radius: 5px;
+        width: 100%;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        margin-top: 16px;
+        
+    }
+`

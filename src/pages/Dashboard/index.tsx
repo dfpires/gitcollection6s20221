@@ -1,6 +1,10 @@
 import React from 'react'
 import logo from '../../assets/logo.svg'
-import {Title, Formulario} from './styles'
+import {Title, Formulario, Repo} from './styles'
+
+import {api} from '../../services/api'
+
+import {Link} from 'react-router-dom'
 
 export const Dashboard:React.FC = () => {
     // vamos criar interface (tipo de dado) contendo campos de 
@@ -23,14 +27,47 @@ export const Dashboard:React.FC = () => {
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
         setNovoRepo(event.target.value)
     }
+    
+    // vai na api do github e traz as info do repo
+    async function handleAddRepo(event: React.FormEvent<HTMLFormElement>, ): Promise<void>{
+        // não atualiza a página
+        event.preventDefault()
+        // tenta chamar a api
+        try {
+            const resposta = await api.get<IGithubRepository>(`repos/${novoRepo}`)
+            const aux = resposta.data // acessa os dados do resultado
+            // adiciona o resultado no vetor repos
+            setRepos([...repos, aux])
+        }
+        catch {
+            console.log(`Repositório não encontrado`)
+        }
+    }
     return (
         <> 
             <img src={logo} alt="Git Collection"/>
             <Title> Catálogo de repositórios do Github </Title>
-            <Formulario>
+            <Formulario onSubmit={handleAddRepo}>
                 <input placeholder="username/nome_repo" onChange={handleInputChange}/>
                 <button type="submit"> Buscar </button> 
-            </Formulario>    
+            </Formulario>
+
+            <Repo>
+                { // percorrer o vetor repos
+                repos.map((item, indice) => (
+                    <Link to={`/repositories/${item.full_name}`}>
+                        <img src={item.owner.avatar_url} alt={item.owner.login}/>
+                        <div>
+                            <strong> {item.full_name} </strong>
+                            <p> {item.description} </p> 
+                        </div>
+                    </Link>
+                )
+
+                )
+
+                }
+            </Repo>    
         </>
     )
 }
