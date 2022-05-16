@@ -30,12 +30,18 @@ export const Dashboard:React.FC = () => {
     
     // vai na api do github e traz as info do repo
     async function handleAddRepo(event: React.FormEvent<HTMLFormElement>, ): Promise<void>{
-        console.log(`Botão foi pressionado`)
         // não atualiza a página
         event.preventDefault()
         // tenta chamar a api
+
+        const config = {
+            headers: { 
+                Authorization: `Bearer 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` 
+            }
+        };
+
         try {
-            const resposta = await api.get<IGithubRepository>(`repos/${novoRepo}`)
+            const resposta = await api.get<IGithubRepository>(`repos/${novoRepo}`, config)
             const aux = resposta.data // acessa os dados do resultado
             // adiciona o resultado no vetor repos
             setRepos([...repos, aux])
@@ -56,7 +62,9 @@ export const Dashboard:React.FC = () => {
             <Repo>
                 { // percorrer o vetor repos
                 repos.map((item, indice) => (
-                    <Link to={`/repositories/${item.full_name}`}>
+                    <Link 
+                        to={`/repositories/${item.full_name}`}
+                        key={item.full_name + indice}    >
                         <img src={item.owner.avatar_url} alt={item.owner.login}/>
                         <div>
                             <strong> {item.full_name} </strong>

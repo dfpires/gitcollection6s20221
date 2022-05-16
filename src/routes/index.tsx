@@ -8,7 +8,7 @@ export const Routes: React.FC = () => {
     return (
         <Switch> {/* define as rotas da aplicação */}
             <Route component={Dashboard} path="/" exact/>
-            <Route component={Repository} path="/repo" />
+            <Route component={Repository} path="/repositories/:repository+" />
             <Route component={Sobre} path="/sobre" />
         </Switch>
     )
