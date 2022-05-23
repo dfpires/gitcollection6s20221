@@ -1,7 +1,10 @@
 import React from 'react'
 import {useRouteMatch} from 'react-router-dom'
 import {api} from '../../services/api'
-
+import logo from '../../assets/logo.svg'
+import {Header, RepoInfo} from './styles'
+import {FiChevronLeft} from 'react-icons/fi'
+import {Link} from 'react-router-dom'
 
 // crias três interfaces - que na verdade são tipos de dados
 interface RepositoryParams {
@@ -55,14 +58,36 @@ export const Repository:React.FC = () => {
     
     return (
         <>
-            <h2> Repository {repository.description}</h2>
-            <div>
-            { issues.map(issue => (
-                    <p> {issue.title} </p>
-                ))
-            }
-            </div>
-            )
+            <Header>
+                <img src={logo} alt="GitCollection"/>
+                <Link to="/"> 
+                    <FiChevronLeft /> Voltar
+                </Link>
+            </Header>
+
+            {repository && (
+                <RepoInfo>
+                    <header>
+                        <img src={repository.owner.avatar_url} alt={repository.owner.login}/>
+                        <div>
+                            <strong> {repository.full_name} </strong>
+                            <p> {repository.description} </p>
+                        </div>
+                    </header>
+                    <ul>
+                        <li> 
+                            <strong> {repository.stargazers_count} </strong> <span> Stars </span>
+                        </li>
+                        <li>
+                            <strong> {repository.forks_count} </strong> <span> Forks </span>
+                        </li>
+                        <li>
+                            <strong> {repository.open_issues_count} </strong> <span> Issues abertas </span>
+                        </li>
+                    </ul>
+                </RepoInfo>
+            )}
+            
         </>
     )
 }

@@ -41,7 +41,7 @@ export const Dashboard:React.FC = () => {
         };
 
         try {
-            const resposta = await api.get<IGithubRepository>(`repos/${novoRepo}`, config)
+            const resposta = await api.get<IGithubRepository>(`repos/${novoRepo}`)
             const aux = resposta.data // acessa os dados do resultado
             // adiciona o resultado no vetor repos
             setRepos([...repos, aux])
