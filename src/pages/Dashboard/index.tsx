@@ -36,12 +36,12 @@ export const Dashboard:React.FC = () => {
 
         const config = {
             headers: { 
-                Authorization: `Bearer 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` 
+                Authorization: `Bearer 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` 
             }
         };
 
         try {
-            const resposta = await api.get<IGithubRepository>(`repos/${novoRepo}`)
+            const resposta = await api.get<IGithubRepository>(`repos/${novoRepo}`, config)
             const aux = resposta.data // acessa os dados do resultado
             // adiciona o resultado no vetor repos
             setRepos([...repos, aux])

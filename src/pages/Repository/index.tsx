@@ -2,8 +2,8 @@ import React from 'react'
 import {useRouteMatch} from 'react-router-dom'
 import {api} from '../../services/api'
 import logo from '../../assets/logo.svg'
-import {Header, RepoInfo} from './styles'
-import {FiChevronLeft} from 'react-icons/fi'
+import {Header, RepoInfo, Issue} from './styles'
+import {FiChevronLeft, FiChevronRight} from 'react-icons/fi'
 import {Link} from 'react-router-dom'
 
 // crias três interfaces - que na verdade são tipos de dados
@@ -41,7 +41,7 @@ export const Repository:React.FC = () => {
     React.useEffect( () => {
         const config = {
             headers: { 
-                Authorization: `Bearer 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` 
+                Authorization: `Bearer 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` 
             }
         };
         // executado quando o repositório for alterado
@@ -87,6 +87,21 @@ export const Repository:React.FC = () => {
                     </ul>
                 </RepoInfo>
             )}
+
+            <Issue>
+                {issues.map(issue => (
+                    <a href={issue.html_url} key={issue.id}>
+                      <div>
+                        <strong> {issue.title} </strong>
+                        <p> {issue.user.login} </p>  
+                      </div> 
+
+                      <FiChevronRight size={20}/> 
+                    </a> 
+                ))}
+            </Issue>
+
+
             
         </>
     )
