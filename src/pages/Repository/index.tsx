@@ -100,9 +100,6 @@ export const Repository:React.FC = () => {
                     </a> 
                 ))}
             </Issue>
-
-
-            
         </>
     )
 }
