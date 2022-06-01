@@ -44,7 +44,7 @@ export const Login: React.FC = () => {
                 </div>
                 <button onClick={ () => {
                    apiLocal
-                        .get<String>(`/users/${login.email}/${login.password}`)
+                        .get<String>(`/user/${login.email}/${login.password}`)
                         .then (response => {
                             if (response.data === "Usuário OK"){
                                 history.push("/dashboard")
