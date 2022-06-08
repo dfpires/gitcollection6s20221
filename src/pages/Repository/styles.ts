@@ -17,7 +17,6 @@ export const Header = styled.header`
             margin-right: 4px;
         }
     }
-
 `;
 
 export const RepoInfo = styled.section`
@@ -95,4 +94,3 @@ export const Issue = styled.div`
         }
     }
 `
-

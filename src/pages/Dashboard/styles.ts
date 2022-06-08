@@ -45,13 +45,11 @@ export const Repo = styled.div`
         align-items: center;
         text-decoration: none;
         margin-top: 16px;
-
         img {
             width: 64px;
             height: 64px;
             border-radius: 50%
         }
-
         div {
             margin: 0 16px;
             flex: 1;

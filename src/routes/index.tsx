@@ -5,13 +5,14 @@ import {Repository} from '../pages/Repository/index'
 import {Sobre} from '../pages/Sobre/index'
 import {Login} from '../pages/Login/index'
 
-export const Rotas: React.FC = () => {
+export const Routes: React.FC = () => {
     return (
         <Switch>
             <Route component={Login} path="/" exact/>
-            <Route component={Dashboard} path="/dashboard"/>
-            <Route component={Repository} path="/repositories/:repository+" />
+            <Route component={Dashboard} path="/dashboard" exact/>
             <Route component={Sobre} path="/sobre" />
+            <Route component={Repository} path="/repositories/:repository+" />
         </Switch>
     )
-}
+} 
+
